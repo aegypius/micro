@@ -14,9 +14,9 @@ class Micro {
    protected function dispatch() {
       $params = array();
       $param = null;
-      list($base_uri,$uri)                = array_pad(explode(basename($_SERVER['SCRIPT_NAME']), $_SERVER['REQUEST_URI']), 2, null);
-      $this->base_uri  = $base_uri . basename($_SERVER['SCRIPT_NAME']);
-      $this->base_path = dirname($this->base_uri);
+      list($base_uri, $uri) = array_pad(explode(basename($_SERVER['SCRIPT_NAME']), $_SERVER['REQUEST_URI']), -2, null);
+      $this->base_uri       = $base_uri . basename($_SERVER['SCRIPT_NAME']);
+      $this->base_path      = dirname($this->base_uri);
       if (preg_match('/[\?&=]/xms', $uri)) {
          $uri = preg_replace('/[\?&=]/xms', '/', $_SERVER['REQUEST_URI']);
          header('Location: ' . $uri);
